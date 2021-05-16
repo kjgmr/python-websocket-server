@@ -13,8 +13,12 @@ async def client():
 
         # Send username as JSON object to server
         await websocket.send(data)
-        
-        response = await websocket.recv()
-        print(response)
+
+        resp_count = 0
+
+        while resp_count < 6:
+            response = await websocket.recv()
+            print(response)
+            resp_count += 1
         
 asyncio.get_event_loop().run_until_complete(client())
